@@ -40,7 +40,7 @@ module ActiveAdmin
       #     }
       #   end
       #   @see ActiveAdmin::Axlsx::DSL
-      def initialize(resource_class, options={}, &block)
+      def initialize(resource_class, options = {}, &block)
         @skip_header = false
         @columns = resource_columns(resource_class)
         parse_options options
