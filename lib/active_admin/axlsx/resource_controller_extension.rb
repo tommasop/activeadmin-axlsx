@@ -3,12 +3,17 @@ module ActiveAdmin
     module ResourceControllerExtension
       def self.included(base)
         base.send :alias_method_chain, :per_page, :xlsx
+        base.send :alias_method_chain, :index, :xlsx
         base.send :respond_to, :xlsx
       end
 
-      ActionController::Renderers.add :xlsx do |obj, options|
-        xlsx = active_admin_config.xlsx_builder.serialize(collection, view_context)
-        send_data xlsx, :filename => "#{xlsx_filename}", :type => Mime::Type.lookup_by_extension(:xlsx)
+      def index_with_xlsx(options={}, &block)
+        index_without_xlsx(options) do |format|
+          format.xlsx do
+            xlsx = active_admin_config.xlsx_builder.serialize(collection)
+            send_data xlsx, :filename => "#{xlsx_filename}", :type => Mime::Type.lookup_by_extension(:xlsx)
+          end
+        end
       end
 
       # patching per_page to use the CSV record max for pagination when the format is xlsx
