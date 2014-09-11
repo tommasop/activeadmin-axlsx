@@ -7,8 +7,10 @@ module ActiveAdmin
         base.send :respond_to, :xlsx
       end
 
-      def index_with_xlsx(options = {}, &block)
-        index_without_xlsx(options) do |format|
+      def index_with_xlsx(&block)
+        index_without_xlsx do |format|
+          block.call format if block_given?
+
           format.xlsx do
             xlsx = active_admin_config.xlsx_builder.serialize(collection, view_context)
             send_data(xlsx,
