@@ -50,7 +50,7 @@ module ActiveAdmin
       # The default header style
       # @return [Hash]
       def header_style
-        @header_style ||= { :bg_color => '00', :fg_color => 'FF', :sz => 12, :alignment => { :horizontal => :center } }
+        @header_style ||= {}
       end
 
       # This has can be used to override the default header style for your
@@ -140,7 +140,6 @@ module ActiveAdmin
       protected
 
       class Column
-
         def initialize(name, block = nil)
           @name = name
           @data = block || @name
