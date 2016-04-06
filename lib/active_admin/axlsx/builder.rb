@@ -207,7 +207,7 @@ module ActiveAdmin
       end
 
       def sheet
-        @sheet ||= package.workbook.add_worksheet
+        @sheet ||= package.workbook.add_worksheet(name: 'Sheet')
       end
 
       def package
