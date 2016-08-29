@@ -1,5 +1,5 @@
-require 'rake'
 require File.expand_path('../lib/active_admin/axlsx/version', __FILE__)
+
 Gem::Specification.new do |s|
   s.name        = 'activeadmin-axlsx'
   s.version     = ActiveAdmin::Axlsx::VERSION
@@ -16,10 +16,10 @@ Gem::Specification.new do |s|
   s.files       = `git ls-files`.split("\n").sort
   s.test_files  = `git ls-files -- {spec}/*`.split("\n")
   s.test_files  = Dir.glob("{spec/**/*}")
+  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib"]
+  s.required_ruby_version = Gem::Requirement.new(">= 1.9.2")
 
   s.add_runtime_dependency 'activeadmin'
   s.add_runtime_dependency 'axlsx'
-
-  s.required_ruby_version = '>= 1.9.2'
-  s.require_path = 'lib'
 end
